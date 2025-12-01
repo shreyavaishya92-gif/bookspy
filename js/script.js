@@ -14,7 +14,6 @@ searchClose?.addEventListener("click", () => searchContent.classList.remove("sho
 
 const searchInput = document.getElementById("search-input");
 
-
 // Mic speech recognition
 const recognition = new webkitSpeechRecognition();
 recognition.lang = "en-us";
