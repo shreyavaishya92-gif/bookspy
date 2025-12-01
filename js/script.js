@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   //hi aaryan sir
+//    hii small brain
 });
 
 /*=============== SEARCH ===============*/
