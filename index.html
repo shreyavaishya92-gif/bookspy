@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ======================= FAVICON ======================= -->
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+
+    <!-- ======================= REMIXICONS ======================= -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+
+    <!-- ======================= CSS ======================= -->
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- ======================= TITLE ======================= -->
+    <title>BookSpy</title>
+</head>
+
+<body>
+    <!-- ======================= HEADER ======================= -->
+    <header class="header" id="header">
+        <nav class="nav container">
+
+            <!-- LOGO -->
+            <a href="#" class="nav__logo">
+                <i class="ri-book-3-line"></i> BookSpy
+            </a>
+
+            <!-- MENU -->
+            <div class="nav__menu">
+                <ul class="nav__list">
+                    <li class="nav__item">
+                        <a href="#home" class="nav__link active-link">
+                            <i class="ri-home-line"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#featured" class="nav__link">
+                            <i class="ri-book-3-line"></i>
+                            <span>Featured</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#select-section" class="nav__link ">
+                            <i class="ri-price-tag-3-line"></i>
+                            <span>Select Author & Genre</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#new" class="nav__link">
+                            <i class="ri-bookmark-2-line"></i>
+                            <span>New Books</span>
+                        </a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a href="#thoughts-section" class="nav__link">
+                            <i class="ri-message-3-line"></i>
+                            <span>feedbacks</span>
+                        </a>
+                    </li>
+                    
+                    <li><a href="favourites.html">Favourites</a></li>
+                    
+                </ul>
+            </div>
+
+            <!-- Nav actions -->
+            <div class="nav__actions">
+                <!-- Search button -->
+                <i class="ri-search-line search-button" id="search-button"></i>
+
+                <!-- login -->
+                <i class="ri-user-line login-button" id="login-icon"></i>
+
+                <!-- Theme button -->
+                <i class="ri-moon-line change-theme" id="theme-button"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ======================= SEARCH ======================= -->
+    <div class="search" id="search-content">
+        <!-- form -->
+        <form action="" class="search__form">
+            <!-- search icom -->
+            <i class="ri-search-line search__icon"></i>
+
+            <!-- input bar -->
+            <input type="text" placeholder="What are you looking for?" class="search__input" id="search-input">
+
+            <!-- mic -->
+            <i class="ri-mic-fill" id="start-btn"></i>
+        </form>
+        <!-- Close button/icon -->
+        <i class="ri-close-line search__close" id="search-close"></i>
+        <div id="search-results" class="filtered-books"></div>
+    </div>
+
+<!-- ======================= LOGIN / SIGNUP / FORGOT POPUPS ======================= -->
+<div class="login-overlay" id="login-content" aria-hidden="true">
+  <!-- Container that centers the card -->
+  <div class="auth-card" id="auth-card">
+    <!-- CLOSE button (existing) -->
+    <i class="ri-close-line login__close" id="login-close" title="Close"></i>
+
+    <!-- LOGIN FORM -->
+    <form class="auth-form" id="login-form" autocomplete="off" onsubmit="return false;">
+      <h3 class="auth-title">Log In</h3>
+
+      <label>Email</label>
+      <input type="email" id="login-email" class="auth-input" placeholder="Enter your email" required>
+
+      <label>Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="login-password" class="auth-input" placeholder="Enter your password" required>
+        <i class="ri-eye-off-line toggle-eye" id="login-toggle-eye" title="Show/Hide password"></i>
+      </div>
+
+      <div class="auth-links">
+        <a href="#" id="open-signup">Sign up</a> • <a href="#" id="open-forgot">Forgot Password?</a>
+      </div>
+
+      <button type="button" id="login-btn" class="auth-btn">Log In</button>
+    </form>
+
+    <!-- SIGNUP FORM (hidden initially) -->
+    <form class="auth-form hidden" id="signup-form" autocomplete="off" onsubmit="return false;">
+      <h3 class="auth-title">Sign Up</h3>
+
+      <label>Email</label>
+      <input type="email" id="signup-email" class="auth-input" placeholder="Enter your email" required>
+
+      <label>Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="signup-password" class="auth-input" placeholder="Choose a password" required>
+        <i class="ri-eye-off-line toggle-eye" id="signup-toggle-eye" title="Show/Hide password"></i>
+      </div>
+
+      <label>Confirm Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="signup-confirm" class="auth-input" placeholder="Confirm password" required>
+        <i class="ri-eye-off-line toggle-eye" id="signup-confirm-eye" title="Show/Hide password"></i>
+      </div>
+
+      <div class="auth-links">
+        <a href="#" id="back-to-login-from-signup">Back to Login</a>
+      </div>
+
+      <button type="button" id="signup-btn" class="auth-btn">Sign Up</button>
+    </form>
+
+    <!-- FORGOT / RESET FORM (hidden initially) -->
+    <form class="auth-form hidden" id="forgot-form" autocomplete="off" onsubmit="return false;">
+      <h3 class="auth-title">Reset Password</h3>
+
+      <label>Email</label>
+      <input type="email" id="forgot-email" class="auth-input" placeholder="Enter your account email" required>
+
+      <label>New Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="forgot-password" class="auth-input" placeholder="New password" required>
+        <i class="ri-eye-off-line toggle-eye" id="forgot-toggle-eye" title="Show/Hide password"></i>
+      </div>
+
+      <label>Confirm New Password</label>
+      <div class="password-wrapper">
+        <input type="password" id="forgot-confirm" class="auth-input" placeholder="Confirm new password" required>
+        <i class="ri-eye-off-line toggle-eye" id="forgot-confirm-eye" title="Show/Hide password"></i>
+      </div>
+
+      <div class="auth-links">
+        <a href="#" id="back-to-login-from-forgot">Back to Login</a>
+      </div>
+
+      <button type="button" id="forgot-btn" class="auth-btn">Update Password</button>
+    </form>
+  </div>
+
+  <!-- small success popup -->
+  <div id="auth-success" class="auth-success" role="status" aria-live="polite">Success</div>
+</div>
+<!-- ======================= LOGIN / SIGNUP / FORGOT POPUPS END ======================= -->
+
+
+    <!-- ======================= MAIN ======================= -->
+    <main class="main">
+        <!-- ======================= HOME ======================= -->
+        <section class="home section" id="home">
+            <!-- Home Container -->
+            <div class="home__container container grid">
+
+                <!-- Data -->
+                <div class="home__data">
+                    <!-- head title -->
+                    <h1 class="home__title">
+                       Every Book Has a Secret
+
+                    </h1>
+                    <!-- description -->
+                    <p class="home__description">
+                      — Find Yours
+                    </p>
+                    <!-- Button -->
+                    <button class="button" id="explore-btn">Explore Now</button>
+                </div>
+
+                <!-- Images of books -->
+                <div class="home__images">
+                    <!-- swiper -->
+                    <div class="home__swiper swiper">
+                        <!-- Books img -->
+                        <div class="swiper-wrapper">
+                            <article class="home__article swiper-slide">
+                                <img src="img/home1.png" alt="images" class="home__img" height="680" width="984">
+                            </article>
+
+                            <article class="home__article swiper-slide">
+                                <img src="img/featured.png" alt="images" class="home__img" height="680" width="984">
+                            </article>
+
+                            <article class="home__article swiper-slide">
+                                <img src="img/home3.png" alt="images" class="home__img" height="680" width="984">
+                            </article>
+
+                            <article class="home__article swiper-slide">
+                                <img src="img/featured5.png" alt="images" class="home__img" height="680" width="984">
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Home section END -->
+
+        <!-- ======================= FEATURED ======================= -->
+        <section class="featured section" id="featured">    
+            
+            <h2 class="section__title">
+                🌟Featured Books
+            </h2>
+
+            <div class="featured__container container swiper" id="books-container">
+                    <div class="swiper-wrapper">
+
+                        <!-- Classroom of the elite vol.1 -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/home1.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">Classroom of the elite </h2>
+                            
+                            <button class="Add-to-favourites button" data-id="1">Add to Favourites</button>
+
+                            <div class="featured__actions">
+
+                                <button class="heart-btn" data-id="1"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- Bunny Girl Senpai❤️ -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/featured.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">Bunny Girl Senpai❤️</h2>
+                            
+
+                            <button class="Add-to-favourites button" data-id="2">Add to Favourites</button>
+
+                            <div class="featured__actions">
+                                
+                                <button class="heart-btn" data-id="2"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- The Eminence in Shadow -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/featured1.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">Eminence in Shadow</h2>
+                            
+
+                            <button class="Add-to-favourites button" data-id="3">Add to Favourites</button>
+
+                            <div class="featured__actions">
+
+                                <button class="heart-btn" data-id="3"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- Solo Leveling vol.3 -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/featured3.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">Solo Leveling <br> vol.3</h2>
+        
+                            <button class="Add-to-favourites button" data-id="4">Add to Favourites</button>
+
+                            <div class="featured__actions">
+                                
+                                <button class="heart-btn" data-id="4"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- It Ends With Us -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/home3.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">It Ends With Us</h2>
+
+                            <button class="Add-to-favourites button" data-id="5">Add to Favourites</button>
+
+                            <div class="featured__actions">
+                               
+                                <button class="heart-btn" data-id="5"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- Atomic Habit -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/featured4.jpg" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">Atomic Habit</h2>
+
+                            <button class="Add-to-favourites button" data-id="6">Add to Favourites</button>
+
+                            <div class="featured__actions">
+                                
+                                <button class="heart-btn" data-id="6"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- Power -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/home4.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">Power - The 48 Laws of Power</h2>
+
+                            <button class="Add-to-favourites button" data-id="7">Add to Favourites</button>
+
+                            <div class="featured__actions">
+                                
+                                <button class="heart-btn" data-id="7"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- Oshi No Ko Vol.3 -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/featured6.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">Oshi No Ko <br> Vol.3</h2>
+                            
+                            <button class="Add-to-favourites button" data-id="8">Add to Favourites</button>
+
+                            <div class="featured__actions">
+                                
+                                <button class="heart-btn" data-id="8"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- Cote 11.5 -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/featured7.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">Classroom of the elite vol.11.5</h2>
+                            <button class="Add-to-favourites button" data-id="9">Add to Favourites</button>
+
+                            <div class="featured__actions">
+                              
+                                <button class="heart-btn" data-id="9"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!-- Yov've reached Sam -->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/featured5.png" alt="image" class="featured__img" height="984px" width="680">
+
+                            <h2 class="featured__title">You've Reached Sam</h2>
+                            
+
+                            <button class="Add-to-favourites button" data-id="10">Add to Favourites</button>
+
+                            <div class="featured__actions">
+                               
+                                <button class="heart-btn" data-id="10"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+
+                        <!--It starts with us-->
+                        <article class="featured__card swiper-slide">
+                            <img src="img/home2.png" alt="image" class="featured__img" height="984px" width="680">
+                            <h2 class="featured__title">It Starts With Us</h2>
+                            <button class="Add-to-favourites button" data-id="11">Add to Favourites</button>
+                            <div class="featured__actions">
+                                <button class="heart-btn" data-id="11"><i class="ri-heart-3-line"></i></button>
+                                <button><i class="ri-eye-line"></i></button>
+                            </div>
+                        </article>
+                    </div>
+
+                  <div class="custom-swiper-button-prev">
+    <svg width="24" height="24" viewBox="0 0 24 24">
+        <path d="M15 18l-6-6 6-6" stroke="#111" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+
+<div class="custom-swiper-button-next">
+    <svg width="24" height="24" viewBox="0 0 24 24">
+        <path d="M9 6l6 6-6 6" stroke="#111" stroke-width="2" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</div>
+
+            </div>
+        </section>
+        <!-- Featured END -->
+
+<!-- ======================= SELECT AUTHOR & GENRE ======================= -->
+<section class="filter section" id="select-section">
+  <div class="filter__container container grid">
+
+    <h2 class="section__title">📝 Select . 🔍 Explore . ✅ Decide </h2>
+<p class="section__description">
+   Choose your favorite authors and genres to see book summaries<br>
+     — making it easy to select your next read and start your literary journey!!
+</p>
+
+    <div class="filter__buttons">
+      
+      <!-- Author Dropdown -->
+      <div class="filter__dropdown">
+        <button class="button" id="author-btn">
+          Select Author <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <ul class="filter__list" id="author-list">
+          <li>Colleen Hoover</li>
+          <li>Syougo Kinugasa</li>
+          <li>Dustin Thao</li>
+          <li>Hajime Kamoshida</li>
+          <li>James Clear</li>
+          <li>Robert Greene</li>
+          <li>Daisuke Aizawa</li>
+          <li>Chugong</li>
+          <li>Aka Akasaka</li>
+        </ul>
+      </div>
+
+      <!-- Genre Dropdown -->
+      <div class="filter__dropdown">
+        <button class="button" id="genre-btn">
+          Select Genre <i class="ri-arrow-down-s-line"></i>
+        </button>
+        <ul class="filter__list" id="genre-list">
+          <li>Romance</li>
+          <li>Thriller</li>
+          <li>Drama</li>
+          <li>Fantasy</li>
+          <li>Motivation</li>
+        </ul>
+      </div>
+      </div>
+      <!-- Small Search Bar (only for Author + Genre filtering) -->
+<div class="author-genre-search-wrapper" style="margin-top: 20px;">
+ 
+
+
+      <div id="dropdown-books-container" class="filtered-books" style="margin-top: 20px;"></div>
+
+  </div>
+</section>
+<!-- Filter END -->
+
+
+        <!-- ======================= NEW BOOKS ======================= -->
+        <section class="section new" id="new">
+            <h2 class="section__title">
+               📚 New Books 📚
+            </h2>
+
+            <div class="new__container container">
+                <!-- Swiper 1 -->
+                <div class="new__swiper swiper">
+                    <div class="swiper-wrapper">
+                        <!-- 1992 -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="1992"
+                        data-author="Stephen King"
+                        data-summary="A chilling descent into guilt and madness, 1992 follows a man whose terrible decision unleashes consequences he never imagined. But what if the real horror isn’t what he did… but what followed him afterward? King pushes you to ask: how far can a person go before their own mind betrays them?"
+                        data-img="img/nbk 1992.jpg">
+
+                            <img src="img/nbk 1922.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">1992 by Stephen King</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- game of thrones-->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="A Game Of Thrones"
+                        data-author="George R.R Martin"
+                        data-summary="In a land where summers last decades and winters can swallow generations, political intrigue, ancient legends, and family betrayal collide. Why do the noble houses fight for a throne made of swords—while a darker, forgotten threat rises beyond the Wall?"
+                        data-img="img/nbgamesofthrones.jpg">
+
+                            <img src="img/nbgamesofthrones.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">A Game Of Thrones</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- The Winds Of winter -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="The Winds Of Winter"
+                        data-author="George R. R. Martin"
+                        data-summary="The long-awaited continuation of A Song of Ice and Fire plunges deeper into battles, betrayals, and shifting alliances. As the dead march and prophecies tighten, who will stand, who will fall, and whose choices will reshape the fate of Westeros?"
+                        data-img="img/nbthe winds of winter.jpg"
+                        
+                        >
+                            <img src="img/nbthe winds of winter.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">The Winds Of winter</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- IT by stephen king -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="IT"
+                        data-author="Stephen King"
+                        data-summary="Seven children face a shape-shifting nightmare that feeds on fear. But what truly binds them together—their terror, or their determination to fight something no adult believes exists? And why does “IT” always return every 27 years?"
+                        data-img="img/it-nbk.jpg"
+                        >
+                            <img src="img/it-nbk.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">IT By Stephen King</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- jk row harrypotter and the chamber of secrets -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="Harry Potter & the chamber of secrets"
+                        data-author="JK Rowling"
+                        data-summary="A hidden chamber, whispered warnings, and a monster that turns students to stone. Why is Harry hearing voices no one else can? And what terrible secret has been buried inside Hogwarts since its founding?"
+                        data-img="img/jkrow-harrypotter.jpg.png"
+                        
+                        >
+                            <img src="img/jkrow-harrypotter.jpg.png" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">Harry Potter & the chamber of secrets</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- jk row harry potter and the half-blood prince -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="Harry Potter & the half-blood prince"
+                        data-author="JK Rowling"
+                        data-summary="Darkness tightens its grip on the wizarding world as Harry uncovers memories that may decide the outcome of the coming war. Who was the mysterious Half-Blood Prince, and why does their old textbook hold such dangerous power?"
+                        data-img="img/jkrow-harry2.jpg"
+                        >
+                            <img src="img/jkrow-harry2.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">Harry Potter & the half-blood prince</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <!-- Swiper 2 -->
+                <div class="new__swiper swiper">
+                    <div class="swiper-wrapper">
+                        <!-- jkrow-harry potter and the order of the phoenix  -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="Harry Potter & the order of the phoenix"
+                        data-author="JK Rowling"
+                        data-summary="With the Ministry denying Voldemort’s return, Harry faces isolation, rebellion, and a terrifying prophecy that could seal his fate. Why does he feel so connected to the Dark Lord—and what truth lies hidden in his recurring visions?"
+                        data-img="img/jkrow-harry3.jpg"
+                        
+                        >
+                            <img src="img/jkrow-harry3.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">Harry Potter & the order of phoenix</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!--maybe someday -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="Maybe Someday"
+                        data-author="Colleen Hoover"
+                        data-summary="Music, emotion, and impossible choices collide when Sydney discovers betrayal…and an unexpected connection with a musician next door. But when feelings grow, how do you decide what’s right versus what feels undeniably real?"
+                        data-img="img/maybe-someday.jpg"
+                        >
+                            <img src="img/maybe-someday.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">Maybe Someday</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Too Late -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="Too Late"
+                        data-author="Colleen Hoover"
+                        data-summary="A gripping, dark romance about survival, obsession, and the painful line between love and danger. When Sloan becomes trapped in a toxic world, can she trust the one person offering her escape—or is he hiding secrets of his own?"
+                        data-img="img/toolate.ch.jpg"
+                        >
+                            <img src="img/toolate.ch.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">Too Late</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- The World Of Ice And Fire -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="The World Of Ice And Fire"
+                        data-author="George R. R. Martin"
+                        data-summary="A beautifully deep history of Westeros, full of lost kingdoms, ancient wars, and stories the maesters barely dare record. Which legends are true, which are lies, and which still threaten the future?"
+                        data-img="img/World-of-Ice-and-Fire-george-1.jpg"
+                        >
+                            <img src="img/World-of-Ice-and-Fire-george-1.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">The World Of Ice And Fire</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- Too Good To Be True -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="Too Good To Be True"
+                        data-author="Prajakta Koli"
+                        data-summary="A heartfelt story exploring expectations, identity, and the pressure to appear perfect. What happens when the truth you’re hiding becomes the thing that could finally set you free?"
+                        data-img="img/toogood.jpg"
+                        >
+                            <img src="img/toogood.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">Too Good To Be True</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!--You Become What You think  -->
+                        <a href="#" class="new__card swiper-slide"
+                        data-title="You Become What You Think"
+                        data-author="Shubham Kumar"
+                        data-summary="A motivational exploration of mindset, choices, and self-transformation. If your thoughts shape your reality, then what realities have your thoughts already created—and which ones could you still rewrite?"
+                        data-img="img/81WYPSP-ngL._SY342_.jpg"
+                        >
+                            <img src="img/81WYPSP-ngL._SY342_.jpg" alt="image" class="new__img" height="680" width="984">
+
+                            <div>
+                                <h2 class="new__title">You Become What You think</h2>
+                                
+                                <div>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-fill new__star"></i>
+                                    <i class="ri-star-half-fill new__star"></i>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- ================= POPUP MODAL  ================= -->
+<div id="bookModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal-content" role="document">
+    <button class="close" aria-label="Close modal">&times;</button>
+
+    <img id="modalImg" src="" alt="Book cover" class="modal-img">
+
+    <h2 id="modalTitle" class="modal-title">Book Title</h2>
+    <h3 id="modalAuthor" class="modal-author">Author Name</h3>
+    <p id="modalSummary" class="modal-summary">Summary goes here...</p>
+
+    <div class="modal-actions">
+      <a id="modalBuy" href="#" class="btn btn-primary"></a>
+    </div>
+  </div>
+</div>
+
+
+
+
+        <!-- ======================= JOIN ======================= -->
+        <section class="section join">
+            <div class="join__container">
+                <img src="img/join-bg.png" alt="img" class="join__bg">
+
+                <div class="join__data container grid">
+                    <h2 class="join__title section__title">
+                        Subscribe To Receive <br>
+                        The Latest Updates
+                    </h2>
+
+                    <form class="join__form">
+                        <input type="email" placeholder="Enter your Email" class="join__input">
+                        <button class="join__button button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= feedbacks  ======================== -->
+        <section class="section thoughts" id="thoughts-section">
+            <h2 class="thoughts-title">
+                📖 Book Lover Thoughts 📖</h2>
+              <form id="thoughts-form" class="thoughts-form">
+
+    <label>Name</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+
+    <label>Email</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+
+    <label>Your Thoughts</label>
+    <textarea id="thoughts" placeholder="Share your thoughts..." required></textarea>
+    <label>Rate Your Experience</label>
+<div class="star-rating">
+    <i class="star" data-value="1">★</i>
+    <i class="star" data-value="2">★</i>
+    <i class="star" data-value="3">★</i>
+    <i class="star" data-value="4">★</i>
+    <i class="star" data-value="5">★</i>
+</div>
+
+<input type="hidden" id="rating" value="0">
+
+
+    <button id="submit-btn" type="submit">Submit</button>
+  </form>  
+
+<!-- Toast Message -->
+<div id="toast" class="toast">Your thoughts have been submitted!</div>
+</section>
+            <div class="testimonial__container container">
+                <div class="testimonial__swiper swiper">
+                    <div class="swiper-wrapper">
+
+                        <!-- Brooooo -->
+                        <article class="testimonial__card swiper-slide">
+                           
+
+                            <h2 class="testimonial__title">Dhruv</h2>
+                            <p class="testimonial__description">
+                            This app saved my so much time when I didn’t know what to read next. The genre filters are fantastic.
+                            </p>
+
+                            <div class="testimonial__star">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                
+                            </div>
+                        </article>
+
+                        <!-- Eshwa bhai -->
+                        <article class="testimonial__card swiper-slide">
+                             
+
+                            <h2 class="testimonial__title">Eshaan</h2>
+                            <p class="testimonial__description">
+                              Intuitive, fast, and enjoyable. I appreciate the way it helps me explore genres I wouldn’t normally try.   
+                            </p>
+
+                            <div class="testimonial__star">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                
+                            </div>
+                        </article>
+
+                        <!-- Aftab -->
+                        <article class="testimonial__card swiper-slide">
+
+                            
+                            <h2 class="testimonial__title ">Kartik</h2>
+                            <p class="testimonial__description">
+                            Finally! A website that stops me from endlessly scrolling for something to read. Love it!"
+                            </p>
+
+                            <div class="testimonial__star">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                               
+                            </div>
+                        </article>
+
+                        <!-- Riya -->
+                        <article class="testimonial__card swiper-slide">
+                           
+
+                            <h2 class="testimonial__title">Riya</h2>
+                            <p class="testimonial__description">
+                            I went from knowing only one author to building a whole reading list in minutes. Awesome!
+                            </p>
+
+                            <div class="testimonial__star">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                        </article>
+
+                        <!-- Pranjal -->
+                        <article class="testimonial__card swiper-slide">
+
+                           
+
+                            <h2 class="testimonial__title">Pranjal</h2>
+                            <p class="testimonial__description">
+                               Perfect for bookworms like me who are indecisive about what to read next!
+                            </p>
+
+                            <div class="testimonial__star">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                        </article>
+
+                        <!-- Nakul -->
+                        <article class="testimonial__card swiper-slide">
+                           
+
+                            <h2 class="testimonial__title">Nakul</h2>
+                            <p class="testimonial__description">
+                              Perfect for indecisive readers like me. It narrows down choices quickly.  
+                            </p>
+
+                            <div class="testimonial__star">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    
+                    <div class="swiper-button-prev">
+                        <i class="ri-arrow-left-s-line"></i>
+                    </div>
+                    <div class="swiper-button-next">
+                        <i class="ri-arrow-right-s-line"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ======================= FOOTER ======================= -->
+    <footer class="footer">
+        <div class="footer__container container grid">
+            <div>
+                <a href="" class="footer__logo">
+                    <i class="ri-book-3-line"></i> BookSpy
+                </a>
+
+                <p class="footer__description">
+                    Find and explore the best <br>
+                    books from your <br>
+                    favorite writer.
+                </p>
+            </div>
+
+            
+        <span class="footer__copy">
+            &#169; All Right Reserved 
+        </span>
+    </footer>
+
+    <!-- ======================= SCROLL UP ======================= -->
+    <a href="#" class="scrollup" id="scroll-up">
+        <i class="ri-arrow-up-line"></i>
+    </a>
+
+    <!-- ======================= BOOK DETAILS POPUP ======================= -->
+<div id="book-popup" class="popup">
+  <div class="popup-content">
+    <span id="popup-close">&times;</span>
+    <img id="popup-image" src="" alt="Book Image" />
+    <h2 id="popup-title"></h2>
+    <h4 id="popup-author"></h4>
+    <p id="popup-summary"></p>
+  </div>
+</div>
+
+
+
+    <!-- ======================= SCRIPT ======================= -->
+    <script src="js/scrollreveal.min.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/script.js"></script>
+
+  
+
+</body>
+
+
+
+</html>
