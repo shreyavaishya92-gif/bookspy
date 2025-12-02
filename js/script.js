@@ -932,6 +932,7 @@ cards.forEach(card => {
         e.preventDefault();
 
         modal.style.display = "flex";
+        modal.style.gap = '20px';
 
         modalImg.src = card.dataset.img;
         modalTitle.textContent = card.dataset.title;

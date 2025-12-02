@@ -1665,7 +1665,8 @@ body.dark-theme {
 .modal-content {
     background: #fff;
     padding: 15px;
-    width: 300px;
+    width: 80%;
+    height: 90%;
     border-radius: 15px;
     text-align: center;
     position: relative;
@@ -1683,7 +1684,7 @@ body.dark-theme {
 
 /* Image */
 .modal-content img {
-    width: 100%;
+    width: 10%;
     border-radius: 10px;
     margin-bottom: 15px;
 }
