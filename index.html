@@ -482,7 +482,7 @@
  
 
 
-      <div id="dropdown-books-container" class="filtered-books" style="margin-top: 20px;"></div>
+      <div id="dropdown-books-container" class="filtered-books" ></div>
 
   </div>
 </section>
@@ -820,94 +820,29 @@
 
         <!-- ======================= feedbacks  ======================== -->
         <section class="section thoughts" id="thoughts-section">
-            <h2 class="thoughts-title">
-                📖 Book Lover Thoughts 📖</h2>
-              <form id="thoughts-form" class="thoughts-form">
-
-    <label>Name</label>
-    <input type="text" id="name" placeholder="Enter your name" required>
-
-    <label>Email</label>
-    <input type="email" id="email" placeholder="Enter your email" required>
-
-    <label>Your Thoughts</label>
-    <textarea id="thoughts" placeholder="Share your thoughts..." required></textarea>
-    <label>Rate Your Experience</label>
-<div class="star-rating">
-    <i class="star" data-value="1">★</i>
-    <i class="star" data-value="2">★</i>
-    <i class="star" data-value="3">★</i>
-    <i class="star" data-value="4">★</i>
-    <i class="star" data-value="5">★</i>
-</div>
-
-<input type="hidden" id="rating" value="0">
-
-
-    <button id="submit-btn" type="submit">Submit</button>
-  </form>  
 
 <!-- Toast Message -->
 <div id="toast" class="toast">Your thoughts have been submitted!</div>
 </section>
-            <div class="testimonial__container container">
-                <div class="testimonial__swiper swiper">
-                    <div class="swiper-wrapper">
-
-                        <!-- Brooooo -->
-                        <article class="testimonial__card swiper-slide">
-                           
-
-                            <h2 class="testimonial__title">Dhruv</h2>
-                            <p class="testimonial__description">
-                            This app saved my so much time when I didn’t know what to read next. The genre filters are fantastic.
-                            </p>
-
-                            <div class="testimonial__star">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                
-                            </div>
-                        </article>
-
-                        <!-- Eshwa bhai -->
-                        <article class="testimonial__card swiper-slide">
-                             
-
-                            <h2 class="testimonial__title">Eshaan</h2>
-                            <p class="testimonial__description">
-                              Intuitive, fast, and enjoyable. I appreciate the way it helps me explore genres I wouldn’t normally try.   
-                            </p>
-
-                            <div class="testimonial__star">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                
-                            </div>
-                        </article>
-
-                        <!-- Aftab -->
-                        <article class="testimonial__card swiper-slide">
-
-                            
-                            <h2 class="testimonial__title ">Kartik</h2>
-                            <p class="testimonial__description">
-                            Finally! A website that stops me from endlessly scrolling for something to read. Love it!"
-                            </p>
-
-                            <div class="testimonial__star">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                               
-                            </div>
-                        </article>
-
+           <section class="section thoughts" id="thoughts-section">
+  <h2 class="thoughts-title">📖 Book Lover Thoughts 📖</h2>
+  <!-- Swiper Slider -->
+  <div class="testimonial__container container">
+    <div class="testimonial__swiper swiper">
+      <div class="swiper-wrapper">
+        <!-- Existing testimonials -->
+        <article class="testimonial__card swiper-slide">
+          <h2 class="testimonial__title">Dhruv</h2>
+          <p class="testimonial__description">
+            This app saved my so much time when I didn’t know what to read next. The genre filters are fantastic.
+          </p>
+          <div class="testimonial__star">
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+            <i class="ri-star-fill"></i>
+          </div>
+        </article>  
                         <!-- Riya -->
                         <article class="testimonial__card swiper-slide">
                            
@@ -926,54 +861,46 @@
                             </div>
                         </article>
 
-                        <!-- Pranjal -->
-                        <article class="testimonial__card swiper-slide">
+                
+      </div>
 
-                           
+      <div class="swiper-button-prev"><i class="ri-arrow-left-s-line"></i></div>
+      <div class="swiper-button-next"><i class="ri-arrow-right-s-line"></i></div>
+    </div>
+  </div>
+   <!-- Button to open testimonial form -->
+  <div style="text-align:center; margin:20px 0;">
+    <button id="add-testimonial-btn" class="button">Add Your Thoughts</button>
+  </div>
 
-                            <h2 class="testimonial__title">Pranjal</h2>
-                            <p class="testimonial__description">
-                               Perfect for bookworms like me who are indecisive about what to read next!
-                            </p>
+  <!-- Testimonial Modal -->
+  <div id="testimonialModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Share Your Thoughts</h2>
+      <form id="testimonial-form" class="thoughts-form">
+        <label>Name</label>
+        <input type="text" id="testimonial-name" placeholder="Enter your name" required>
 
-                            <div class="testimonial__star">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                        </article>
+        <label>Your Thoughts</label>
+        <textarea id="testimonial-text" placeholder="Share your thoughts..." required></textarea>
 
-                        <!-- Nakul -->
-                        <article class="testimonial__card swiper-slide">
-                           
+        <label>Rate Your Experience</label>
+        <div class="star-rating">
+          <i class="star" data-value="1">★</i>
+          <i class="star" data-value="2">★</i>
+          <i class="star" data-value="3">★</i>
+          <i class="star" data-value="4">★</i>
+          <i class="star" data-value="5">★</i>
+        </div>
+        <input type="hidden" id="testimonial-rating" value="0">
 
-                            <h2 class="testimonial__title">Nakul</h2>
-                            <p class="testimonial__description">
-                              Perfect for indecisive readers like me. It narrows down choices quickly.  
-                            </p>
+        <button id="submit-btn" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</section>
 
-                            <div class="testimonial__star">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                        </article>
-
-                    </div>
-
-                    
-                    <div class="swiper-button-prev">
-                        <i class="ri-arrow-left-s-line"></i>
-                    </div>
-                    <div class="swiper-button-next">
-                        <i class="ri-arrow-right-s-line"></i>
-                    </div>
-                </div>
-            </div>
         </section>
 
     </main>
@@ -1020,6 +947,7 @@
     <!-- ======================= SCRIPT ======================= -->
     <script src="js/scrollreveal.min.js"></script>
     <script src="js/swiper-bundle.min.js"></script>
+    <script src="js/favourites.js"></script>
     <script src="js/script.js"></script>
 
   

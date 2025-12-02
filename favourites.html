@@ -11,7 +11,7 @@
             font-family: Arial;
             background:#f2f2f2;
         }
-        .fav-container {
+        #favourites-container {
             max-width: 900px;
             padding: 20px;
             margin: auto;
@@ -19,7 +19,7 @@
         .fav-card {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            gap: 15px;
             background: #fff;
             padding: 15px;
             margin: 10px 0;
@@ -27,16 +27,25 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .fav-title {
+            flex: 1;
             font-size: 1.2rem;
             font-weight: bold;
         }
-        .remove-btn {
+        .remove-fav {
             background: red;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 8px 14px;
             border-radius: 8px;
             cursor: pointer;
+            pointer-events: auto;
+        }
+        .heart-btn {
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            pointer-events: auto;
         }
     </style>
 
@@ -45,10 +54,9 @@
 
     <h1 style="text-align:center;">💖 Your Favourite Books</h1>
 
-    <div  id="favourites-container"></div>
+    <div id="favourites-container"></div>
 
-    <!-- Load main script -->
-    <script src="js/script.js"></script>
+    <script src="js/favourites.js"></script>
 
 </body>
 </html>

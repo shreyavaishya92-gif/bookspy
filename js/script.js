@@ -316,153 +316,153 @@ const books = [
 
 // ---------- FAVOURITES SYSTEM ----------
 
-// Helpers
-function getFavourites() {
-    return JSON.parse(localStorage.getItem("favourites")) || [];
-}
+// // Helpers
+// function getFavourites() {
+//     return JSON.parse(localStorage.getItem("favourites")) || [];
+// }
 
-function saveFavourites(favs) {
-    localStorage.setItem("favourites", JSON.stringify(favs));
-}
+// function saveFavourites(favs) {
+//     localStorage.setItem("favourites", JSON.stringify(favs));
+// }
 
-function isFavourite(id) {
-    return getFavourites().some(b => b.id === id);
-}
+// function isFavourite(id) {
+//     return getFavourites().some(b => b.id === id);
+// }
 
-// Toggle favourite (adds/removes)
-function toggleFavouriteById(id, bookData, btn) {
-    let favs = getFavourites();
-    const index = favs.findIndex(b => b.id === id);
+// // Toggle favourite (adds/removes)
+// function toggleFavouriteById(id, bookData, btn) {
+//     let favs = getFavourites();
+//     const index = favs.findIndex(b => b.id === id);
 
-    if (index > -1) {
-        favs.splice(index, 1); // remove
-    } else {
-        favs.push(bookData); // add
-    }
+//     if (index > -1) {
+//         favs.splice(index, 1); // remove
+//     } else {
+//         favs.push(bookData); // add
+//     }
 
-    saveFavourites(favs);
-    updateHeartIcon(btn);   // update only clicked button
-    updateFavButtons();     // this can still update “Add-to-favourites” buttons if needed
-    if (isFavouritesPage) renderFavouritesPage();
-}
-
-
-function updateHeartIcon(btn) {
-    const id = Number(btn.dataset.id);
-    const icon = btn.querySelector("i");
-    if (!icon) return;
-
-    if (isFavourite(id)) {
-        btn.classList.add("active");
-        icon.classList.remove("ri-heart-3-line");
-        icon.classList.add("ri-heart-3-fill");
-        icon.style.color = "red";
-    } else {
-        btn.classList.remove("active");
-        icon.classList.remove("ri-heart-3-fill");
-        icon.classList.add("ri-heart-3-line");
-        icon.style.color = "";
-    }
-}
-
-// Update all heart buttons on the page to reflect localStorage favourites 
-function updateHeartIcons() {
-    document.querySelectorAll(".heart-btn").forEach(btn => {
-        if (!btn.dataset || !btn.dataset.id) return;
-        updateHeartIcon(btn);
-    });
-}
+//     saveFavourites(favs);
+//     updateHeartIcon(btn);   // update only clicked button
+//     updateFavButtons();     // this can still update “Add-to-favourites” buttons if needed
+//     if (isFavouritesPage) renderFavouritesPage();
+// }
 
 
-// Update "Add to Favourites" buttons if present
-function updateFavButtons() {
-    document.querySelectorAll(".Add-to-favourites").forEach(btn => {
-        const id = Number(btn.dataset.id);
-        if (isFavourite(id)) {
-            btn.textContent = "Added ✓";
-            btn.style.background = "#4CAF50";
-        } else {
-            btn.textContent = "Add to Favourites";
-            btn.style.background = "";
-        }
-    });
-}
-// Updated attachFavListeners function
-function attachFavListeners() {
-    // Use delegation so it works even if cards are rendered later
-    document.addEventListener("click", (e) => {
-        const heart = e.target.closest(".heart-btn");
-        const addBtn = e.target.closest(".Add-to-favourites");
-        const btn = heart || addBtn;
-        if (!btn) return;
+// function updateHeartIcon(btn) {
+//     const id = Number(btn.dataset.id);
+//     const icon = btn.querySelector("i");
+//     if (!icon) return;
 
-        // find the card (try several possible class names)
-        const card = btn.closest(".featured__card") || btn.closest(".filter-book-card") || btn.closest(".fav-card");
-        if (!card) {
-            console.warn("attachFavListeners: could not find card for button", btn);
-            return;
-        }
+//     if (isFavourite(id)) {
+//         btn.classList.add("active");
+//         icon.classList.remove("ri-heart-3-line");
+//         icon.classList.add("ri-heart-3-fill");
+//         icon.style.color = "red";
+//     } else {
+//         btn.classList.remove("active");
+//         icon.classList.remove("ri-heart-3-fill");
+//         icon.classList.add("ri-heart-3-line");
+//         icon.style.color = "";
+//     }
+// }
 
-        const id = Number(btn.dataset.id);
-        if (!id) {
-            console.warn("attachFavListeners: button missing data-id", btn);
-            return;
-        }
+// // Update all heart buttons on the page to reflect localStorage favourites 
+// function updateHeartIcons() {
+//     document.querySelectorAll(".heart-btn").forEach(btn => {
+//         if (!btn.dataset || !btn.dataset.id) return;
+//         updateHeartIcon(btn);
+//     });
+// }
 
-        // Build bookData with safe fallbacks
-        const titleEl = card.querySelector(".featured__title") || card.querySelector(".filter-book-title") || card.querySelector(".fav-title") || card.querySelector("h3") || card.querySelector("h2");
-        const imgEl = card.querySelector(".featured__img") || card.querySelector("img");
 
-        const bookData = {
-            id: id,
-            title: titleEl ? titleEl.innerText.trim() : ("Book " + id),
-            image: imgEl ? (imgEl.src || imgEl.getAttribute("src")) : ""
-        };
+// // Update "Add to Favourites" buttons if present
+// function updateFavButtons() {
+//     document.querySelectorAll(".Add-to-favourites").forEach(btn => {
+//         const id = Number(btn.dataset.id);
+//         if (isFavourite(id)) {
+//             btn.textContent = "Added ✓";
+//             btn.style.background = "#4CAF50";
+//         } else {
+//             btn.textContent = "Add to Favourites";
+//             btn.style.background = "";
+//         }
+//     });
+// }
+// // Updated attachFavListeners function
+// function attachFavListeners() {
+//     // Use delegation so it works even if cards are rendered later
+//     document.addEventListener("click", (e) => {
+//         const heart = e.target.closest(".heart-btn");
+//         const addBtn = e.target.closest(".Add-to-favourites");
+//         const btn = heart || addBtn;
+//         if (!btn) return;
 
-        // Toggle favourite
-        toggleFavouriteById(bookData.id, bookData, btn);
-    });
-}
+//         // find the card (try several possible class names)
+//         const card = btn.closest(".featured__card") || btn.closest(".filter-book-card") || btn.closest(".fav-card");
+//         if (!card) {
+//             console.warn("attachFavListeners: could not find card for button", btn);
+//             return;
+//         }
 
-// Render Favourites page
-function renderFavouritesPage() {
-    const container = document.getElementById("favourites-container");
-    if (!container) return;
+//         const id = Number(btn.dataset.id);
+//         if (!id) {
+//             console.warn("attachFavListeners: button missing data-id", btn);
+//             return;
+//         }
 
-    const favs = getFavourites();
-    container.innerHTML = "";
+//         // Build bookData with safe fallbacks
+//         const titleEl = card.querySelector(".featured__title") || card.querySelector(".filter-book-title") || card.querySelector(".fav-title") || card.querySelector("h3") || card.querySelector("h2");
+//         const imgEl = card.querySelector(".featured__img") || card.querySelector("img");
 
-    if (favs.length === 0) {
-        container.innerHTML = `<p style="text-align:center; font-style:italic;">You have no favourite books yet.</p>`;
-        return;
-    }
+//         const bookData = {
+//             id: id,
+//             title: titleEl ? titleEl.innerText.trim() : ("Book " + id),
+//             image: imgEl ? (imgEl.src || imgEl.getAttribute("src")) : ""
+//         };
 
-    favs.forEach(book => {
-        const div = document.createElement("div");
-        div.className = "fav-card";
-        div.innerHTML = `
-            <img src="${book.image}" alt="${book.title}" style="width:70px; height:90px; border-radius:6px;">
-            <span class="fav-title">${book.title}</span>
-            <button class="remove-fav button" data-id="${book.id}">Remove</button>
-            <button class="heart-btn" data-id="${book.id}">
-                <i class="ri-heart-3-fill" style="color:red;"></i>
-            </button>
-        `;
-        container.appendChild(div);
-    });
+//         // Toggle favourite
+//         toggleFavouriteById(bookData.id, bookData, btn);
+//     });
+// }
 
-    // Remove buttons
-    document.querySelectorAll(".remove-fav").forEach(btn => {
-        btn.onclick = () => {
-            const id = Number(btn.dataset.id);
-            const favs = getFavourites().filter(b => b.id !== id);
-            saveFavourites(favs);
-            renderFavouritesPage();
-            updateHeartIcons();
-            updateFavButtons();
-        };
-    });
-}
+// // Render Favourites page
+// function renderFavouritesPage() {
+//     const container = document.getElementById("favourites-container");
+//     if (!container) return;
+
+//     const favs = getFavourites();
+//     container.innerHTML = "";
+
+//     if (favs.length === 0) {
+//         container.innerHTML = `<p style="text-align:center; font-style:italic;">You have no favourite books yet.</p>`;
+//         return;
+//     }
+
+//     favs.forEach(book => {
+//         const div = document.createElement("div");
+//         div.className = "fav-card";
+//         div.innerHTML = `
+//             <img src="${book.image}" alt="${book.title}" style="width:70px; height:90px; border-radius:6px;">
+//             <span class="fav-title">${book.title}</span>
+//             <button class="remove-fav button" data-id="${book.id}">Remove</button>
+//             <button class="heart-btn" data-id="${book.id}">
+//                 <i class="ri-heart-3-fill" style="color:red;"></i>
+//             </button>
+//         `;
+//         container.appendChild(div);
+//     });
+
+//     // Remove buttons
+//     document.querySelectorAll(".remove-fav").forEach(btn => {
+//         btn.onclick = () => {
+//             const id = Number(btn.dataset.id);
+//             const favs = getFavourites().filter(b => b.id !== id);
+//             saveFavourites(favs);
+//             renderFavouritesPage();
+//             updateHeartIcons();
+//             updateFavButtons();
+//         };
+//     });
+// }
 // ---------- VIEW DETAILS (redirect to new page) ----------
 document.addEventListener("click", (e) => {
     const btn = e.target.closest(".view-btn");
@@ -886,61 +886,95 @@ if (thoughtsForm) {
 
 
 /*=============== STAR RATING (CLICK TO TOGGLE) ===============*/
-const stars = document.querySelectorAll(".star");
-const ratingInput = document.getElementById("rating");
+// Modal Elements
+const addBtn = document.getElementById("add-testimonial-btn");
+const modal = document.getElementById("testimonialModal");
+const closeBtn = modal.querySelector(".close");
+const form = document.getElementById("testimonial-form");
+
+// Star rating inside modal
+const stars = form.querySelectorAll(".star");
+const ratingInput = document.getElementById("testimonial-rating");
 
 stars.forEach(star => {
     star.addEventListener("click", () => {
-        const value = Number(star.getAttribute("data-value"));
+        const value = Number(star.dataset.value);
         const currentRating = Number(ratingInput.value);
 
-        // If clicking the same selected star → reset rating
         if (value === currentRating) {
             ratingInput.value = 0;
-
-            // Remove all filled stars
             stars.forEach(s => s.classList.remove("filled"));
             return;
         }
 
-        // Otherwise set a new rating
         ratingInput.value = value;
-
         stars.forEach(s => {
-            if (Number(s.getAttribute("data-value")) <= value) {
-                s.classList.add("filled");
-            } else {
-                s.classList.remove("filled");
-            }
+            if (Number(s.dataset.value) <= value) s.classList.add("filled");
+            else s.classList.remove("filled");
         });
     });
 });
-// Select modal + elements
-const modal = document.getElementById("bookModal");
-const modalImg = document.getElementById("modalImg");
-const modalTitle = document.getElementById("modalTitle");
-const modalAuthor = document.getElementById("modalAuthor");
-const modalSummary = document.getElementById("modalSummary");
-const closeBtn = document.querySelector(".close");
 
-// All book cards
-const cards = document.querySelectorAll(".new__card");
-
-// When card is clicked → open modal
-cards.forEach(card => {
-    card.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        modal.style.display = "flex";
-        modal.style.gap = '20px';
-
-        modalImg.src = card.dataset.img;
-        modalTitle.textContent = card.dataset.title;
-        modalAuthor.textContent = "Author: " + card.dataset.author;
-        modalSummary.textContent = card.dataset.summary;
-    });
-});
+// Open modal
+addBtn.onclick = () => modal.style.display = "flex";
 
 // Close modal
 closeBtn.onclick = () => modal.style.display = "none";
-modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
+modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+// Handle form submission
+form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const name = document.getElementById("testimonial-name").value.trim();
+    const text = document.getElementById("testimonial-text").value.trim();
+    const rating = Number(ratingInput.value);
+
+    if (!name || !text || rating === 0) return alert("Please fill all fields and select a rating.");
+
+    // Create testimonial card
+    const swiperWrapper = document.querySelector(".testimonial__swiper .swiper-wrapper");
+    const slide = document.createElement("article");
+    slide.className = "testimonial__card swiper-slide";
+    slide.innerHTML = `
+        <h2 class="testimonial__title">${name}</h2>
+        <p class="testimonial__description">${text}</p>
+        <div class="testimonial__star">
+            ${'★'.repeat(rating).split('').map(()=>'<i class="ri-star-fill"></i>').join('')}
+            ${'★'.repeat(5-rating).split('').map(()=>'<i class="ri-star-line"></i>').join('')}
+        </div>
+    `;
+    swiperWrapper.appendChild(slide);
+
+    // Reset form
+    form.reset();
+    stars.forEach(s => s.classList.remove("filled"));
+    ratingInput.value = 0;
+
+    // Close modal
+    modal.style.display = "none";
+
+    // Update Swiper if using swiper.js
+    if (window.swiperTestimonials) {
+        window.swiperTestimonials.update();
+    }
+
+    alert("Thank you! Your testimonial has been added.");
+});
+
+// Initialize Swiper globally
+window.swiperTestimonials = new Swiper(".testimonial__swiper", {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: false,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
+
+
+
+
+
